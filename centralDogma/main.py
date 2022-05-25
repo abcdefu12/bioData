@@ -1,16 +1,28 @@
-# This is a sample Python script.
+# translation to protein code start
+print('<< translation of central Dogma >>')
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# codon table file read
 
+aaSeq1char = {}  # aa name: single-letter ex.A
+aaSeq3char = {}  # aa name: three-letter ex.Ala
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+f = open('codon_table.txt', 'r')
+title = f.readline()
 
+for line in f.readlines():
+    data = line.split('\t')
+    Triplet = data[0]
+    aa1char = data[1]
+    aa3char = data[2]
+    fraction = float(data[3])
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    aaSeq1char[Triplet] = aa1char   # codon Table for 1char
+    aaSeq3char[Triplet] = aa3char   # codon Table for 3char
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+f.close()
+
+# codon table
+print('< codon Table >')
+print('codon Table for 1Char:', aaSeq1char)
+print('codon Table for 3Char:', aaSeq3char)
+print('--------------------------------------')
